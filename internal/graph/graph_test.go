@@ -30,7 +30,6 @@ func TestGraph_AddConnection(t *testing.T) {
 
 	g.AddConnection(1, 2)
 	g.AddConnection(2, 1) // add reverse connection, since connections are bidirectional
-	g.AddConnection(2, 3)
 
 	if len(g.Users[1].Connections) != 1 {
 		t.Errorf("Expected 1 connection for user 1, got %d", len(g.Users[1].Connections))
@@ -44,8 +43,8 @@ func TestGraph_AddConnection(t *testing.T) {
 		t.Errorf("Expected 1 connection for user 2, got %d", len(g.Users[2].Connections))
 	}
 
-	if g.Users[2].Connections[0] != 3 {
-		t.Errorf("Expected connection 3 for user 2, got %d", g.Users[2].Connections[0])
+	if g.Users[2].Connections[0] != 1 {
+		t.Errorf("Expected connection 1 for user 2, got %d", g.Users[2].Connections[0])
 	}
 }
 
