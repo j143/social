@@ -133,7 +133,7 @@ func main() {
 
 	// Run the test functions
 	testUserConnections(graph)
-	// testCircleMembership(graph)
+	testCircleMembership(graph)
 
 	// Perform further analysis or tests
 }
@@ -169,11 +169,11 @@ func slicesEqual(slice1, slice2 []int) bool {
 
 
 func testCircleMembership(graph map[int]*User) {
-	// Test case: Check if user 71 has connection to user 0 and circle membership (-1)
-	if !contains(graph[71].Connections, 0) || !contains(graph[71].Connections, -1) {
-		fmt.Println("User 71 connections test failed!")
+	// Test case: Check if user 28 has connection to user 312 and circle membership (-1)
+	if !contains(graph[28].Connections, 312) || !contains(graph[28].Connections, -1) {
+		fmt.Println("User 28, connections test failed!")
 	} else {
-		fmt.Println("User 71 connections test passed!")
+		fmt.Println("User 28, connections test passed!")
 	}
 
 	// Add more test cases as needed
