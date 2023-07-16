@@ -65,3 +65,33 @@ func (g *Graph) AddConnection(userID, connectionID int) {
 	connectedUser.Connections = append(connectedUser.Connections, userID)
 
 }
+
+
+// CalculateDegreeCentrality method
+func (g *Graph) CalculateDegreeCentrality() map[int]float64 {
+	degreeCentrality := make(map[int]float64)
+
+	for id, user := range g.Users {
+		degreeCentrality[id] = float64(len(user.Connections))
+	}
+
+	return degreeCentrality
+}
+
+// FindCommonConnections method
+func (g *Graph) FindCommonConnections(userID1, userID2 int) []int {
+	commonConnections := []int{}
+
+	user1 := g.Users[userID1]
+	user2 := g.Users[userID2]
+
+	for _, conn1 := range user1.Connections {
+		for _, conn2 := range user2.Connections {
+			if conn1 == conn2 {
+				commonConnections = append(commonConnections, conn1)
+			}
+		}
+	}
+
+	return commonConnections
+}

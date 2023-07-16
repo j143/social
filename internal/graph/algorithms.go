@@ -35,4 +35,48 @@ func (g *Graph) BFS(startID int) {
 	}
 }
 
+
 // Implement Dijkstra's algorithm, clustering, influence measurement, and recommendation system as separate functions in this file
+// func (g *Graph) Dijkstra(startID, targetID int) []int {
+//     distances := make(map[int]int)
+//     previous := make(map[int]int)
+//     pq := make(PriorityQueue, 0)
+
+//     for userID := range g.Users {
+//         distances[userID] = math.MaxInt32
+//         previous[userID] = -1
+//     }
+
+//     distances[startID] = 0
+//     pq.Push(&Item{ID: startID, Priority: 0})
+
+//     for pq.Len() > 0 {
+//         current := pq.Pop().(*Item)
+
+//         if current.ID == targetID {
+//             break
+//         }
+
+//         for _, connectionID := range g.Users[current.ID].Connections {
+//             weight := 1 // Assuming equal weight for all connections
+//             alt := distances[current.ID] + weight
+
+//             if alt < distances[connectionID] {
+//                 distances[connectionID] = alt
+//                 previous[connectionID] = current.ID
+//                 pq.Push(&Item{ID: connectionID, Priority: alt})
+//             }
+//         }
+//     }
+
+//     // Retrieve the shortest path from startID to targetID
+//     path := []int{}
+//     currentID := targetID
+
+//     for currentID != -1 {
+//         path = append([]int{currentID}, path...)
+//         currentID = previous[currentID]
+//     }
+
+//     return path
+// }
