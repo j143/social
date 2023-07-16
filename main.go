@@ -1,10 +1,10 @@
 package main
 
-import (
-	"fmt"
+// import (
+// 	"fmt"
 
-	"internal/graph"
-)
+// 	"internal/graph"
+// )
 
 func main() {
 	// Create a new graph

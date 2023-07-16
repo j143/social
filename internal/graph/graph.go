@@ -27,5 +27,10 @@ func (g *Graph) AddUser(id int, name string) {
 }
 
 func (g *Graph) AddConnection(userID, connectionID int) {
-	g.Users[userID].Connections = append(g.Users[userID].Connections, connectionID)
+	user, ok := g.Users[userID]
+
+	if !ok {
+		return // Or handle the case when the user is not found
+	}
+	user.Connections = append(user.Connections, connectionID)
 }
