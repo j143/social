@@ -1,5 +1,6 @@
 package graph
 
+
 type User struct {
 	ID         int
 	Name       string
@@ -9,11 +10,13 @@ type User struct {
 
 type Graph struct {
 	Users map[int]*User
+	Visited map[int]bool
 }
 
 func NewGraph() *Graph {
 	return &Graph{
 		Users: make(map[int]*User),
+		Visited: make(map[int]bool),
 	}
 }
 
@@ -24,6 +27,12 @@ func (g *Graph) AddUser(id int, name string) {
 		Connections: []int{},
 		Interests:  []string{},
 	}
+}
+
+
+// Use globally query the visited state of the nodes in a graph
+func (g *Graph) IsVisited(id int) bool {
+	return g.Visited[id]
 }
 
 func (g *Graph) AddConnection(userID, connectionID int) {

@@ -48,6 +48,14 @@ func TestGraph_AddConnection(t *testing.T) {
 	}
 }
 
+/*
+User 1 (John) --> User 2 (Alice) --> User 3 (Bob)
+                  ^                       |
+                  |                       v
+                  +---------------- User 4 (Eve)
+
+*/
+
 func TestGraph_BFS(t *testing.T) {
 	g := NewGraph()
 
@@ -59,8 +67,9 @@ func TestGraph_BFS(t *testing.T) {
 	g.AddConnection(1, 2)
 	g.AddConnection(2, 3)
 	g.AddConnection(3, 4)
+	g.AddConnection(4, 1)
 
-	visited := make(map[int]bool)
+	// visited := make(map[int]bool)
 
 	g.BFS(1)
 
@@ -72,7 +81,7 @@ func TestGraph_BFS(t *testing.T) {
 	}
 
 	for id := range g.Users {
-		if visited[id] != expectedVisited[id] {
+		if g.IsVisited(id) != expectedVisited[id] {
 			t.Errorf("Expected user with ID %d to be visited, but it was not", id)
 		}
 	}
