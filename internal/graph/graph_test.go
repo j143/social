@@ -29,6 +29,7 @@ func TestGraph_AddConnection(t *testing.T) {
 	g.AddUser(3, "Bob")
 
 	g.AddConnection(1, 2)
+	g.AddConnection(2, 1) // add reverse connection, since connections are bidirectional
 	g.AddConnection(2, 3)
 
 	if len(g.Users[1].Connections) != 1 {

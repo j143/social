@@ -33,4 +33,12 @@ func (g *Graph) AddConnection(userID, connectionID int) {
 		return // Or handle the case when the user is not found
 	}
 	user.Connections = append(user.Connections, connectionID)
+
+	// Update the connection on the other side as well
+	connectedUser, ok := g.Users[connectionID]
+	if !ok {
+		return // Or handle the case when the user is not found
+	}
+	connectedUser.Connections = append(connectedUser.Connections, userID)
+
 }
