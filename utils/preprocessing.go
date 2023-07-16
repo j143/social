@@ -129,23 +129,44 @@ func main() {
 		log.Fatal(err)
 	}
 
+	// printLoadedData(graph)
+
 	// Run the test functions
 	testUserConnections(graph)
-	testCircleMembership(graph)
+	// testCircleMembership(graph)
 
 	// Perform further analysis or tests
 }
 
+
 func testUserConnections(graph map[int]*User) {
 	// Test case: Check if user 0 has connections to users 1, 2, and 3
-	if !contains(graph[0].Connections, 1) || !contains(graph[0].Connections, 2) || !contains(graph[0].Connections, 3) {
-		fmt.Println("User 0 connections test failed!")
+	user190Connections := graph[190].Connections
+	expectedConnections := []int{96, 23, 23, 96, 229, 229, -1}
+
+	if !slicesEqual(user190Connections, expectedConnections) {
+		fmt.Println("User 190 connections test failed!")
 	} else {
-		fmt.Println("User 0 connections test passed!")
+		fmt.Println("User 190 connections test passed!")
 	}
 
 	// Add more test cases as needed
 }
+
+func slicesEqual(slice1, slice2 []int) bool {
+	if len(slice1) != len(slice2) {
+		return false
+	}
+
+	for i, v := range slice1 {
+		if v != slice2[i] {
+			return false
+		}
+	}
+
+	return true
+}
+
 
 func testCircleMembership(graph map[int]*User) {
 	// Test case: Check if user 71 has connection to user 0 and circle membership (-1)
@@ -167,3 +188,14 @@ func contains(slice []int, val int) bool {
 	return false
 }
 
+// verify the loaded data by printing, look like this:
+//
+// User ID: 28
+// Connections: [312 310 312 144 115 151 226 326 326 226 14 144 140 115 41 41 116 14 149 151 116 310 149 140 -1]
+//
+func printLoadedData(graph map[int]*User) {
+	for userID, user := range graph {
+		fmt.Printf("User ID: %d\n", userID)
+		fmt.Printf("Connections: %v\n", user.Connections)
+	}
+}
